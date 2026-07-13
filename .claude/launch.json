@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "my-way-backend",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["/Users/yuliashea/PycharmProjects/my-way/start.sh"],
+      "port": 8002
+    },
+    {
+      "name": "my-way-frontend",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["-c", "cd /Users/yuliashea/PycharmProjects/my-way/frontend && npm run dev -- --port 5180"],
+      "port": 5180
+    }
+  ]
+}

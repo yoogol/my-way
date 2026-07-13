@@ -1,0 +1,252 @@
+.app-shell {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.app-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.app-nav .brand {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+.app-nav a {
+  text-decoration: none;
+  color: var(--text-secondary);
+}
+.app-nav a.active {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.app-nav .spacer {
+  flex: 1;
+}
+
+/* Auth pages */
+.auth-page {
+  display: flex;
+  justify-content: center;
+  padding-top: 3rem;
+}
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 320px;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 2rem;
+}
+.auth-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+.auth-form .error {
+  color: var(--danger);
+  font-size: 0.9rem;
+}
+
+/* Age ticker */
+.age-ticker {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.age-ticker-date {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+.age-ticker-counter {
+  font-size: 1.6rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  margin-top: 0.25rem;
+}
+
+/* Day view */
+.date-picker {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+.day-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.day-sections section {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem;
+}
+.day-sections h2 {
+  margin-top: 0;
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+.empty-hint {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.task-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.task-checklist label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.journal-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.journal-editor textarea {
+  width: 100%;
+  resize: vertical;
+}
+.journal-editor button {
+  align-self: flex-end;
+}
+
+.context-events ul, .financial-entries ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.context-description {
+  margin: 0;
+}
+.context-opinion {
+  margin: 0.2rem 0 0 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+.context-event-form, .financial-entry-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+.context-event-form input {
+  flex: 1;
+  min-width: 160px;
+}
+
+.financial-entries li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  background: var(--page-plane);
+}
+.financial-entries li.negative span:last-child {
+  color: var(--danger);
+}
+.financial-entries li.positive span:last-child {
+  color: var(--success);
+}
+label.inline {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* Task admin */
+.task-admin ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.task-admin li {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.task-admin li input {
+  flex: 1;
+}
+
+/* Timeline */
+.timeline-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1rem;
+}
+.timeline-controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+.segmented-control {
+  display: flex;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.segmented-control button {
+  border: none;
+  border-radius: 0;
+  background: var(--surface-1);
+}
+.segmented-control button.active {
+  background: var(--text-primary);
+  color: var(--page-plane);
+}
+.indicator-toggles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.chart-card {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem;
+}
+.chart-card h3 {
+  margin-top: 0;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+.small-multiples-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1rem;
+}

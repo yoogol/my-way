@@ -1,0 +1,6 @@
+[build]
+builder = "nixpacks"
+
+[deploy]
+startCommand = "python manage.py migrate && gunicorn my_way.wsgi --bind 0.0.0.0:$PORT"
+restartPolicyType = "on_failure"
