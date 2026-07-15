@@ -16,9 +16,20 @@
   background: var(--surface-1);
   border-bottom: 1px solid var(--border);
 }
+.brand-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
 .brand {
   font-weight: 700;
   font-size: var(--fs-lg);
+  line-height: 1.2;
+}
+.tagline {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-style: italic;
 }
 .logout-button {
   background: transparent;
@@ -473,7 +484,8 @@ label.inline {
   padding: var(--space-5);
 }
 .auth-form h1 { margin: 0; font-size: var(--fs-xl); }
-.auth-form h2 { margin: 0 0 var(--space-2) 0; font-size: var(--fs-lg); color: var(--text-secondary); font-weight: 500; }
+.tagline-large { margin: 0; font-size: var(--fs-sm); color: var(--text-muted); font-style: italic; }
+.auth-form h2 { margin: var(--space-3) 0 var(--space-2) 0; font-size: var(--fs-lg); color: var(--text-secondary); font-weight: 500; }
 .auth-form label {
   display: flex;
   flex-direction: column;

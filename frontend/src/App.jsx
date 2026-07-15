@@ -27,7 +27,10 @@ function TopBar() {
   if (!isAuthenticated() || AUTH_ROUTES.includes(location.pathname)) return null
   return (
     <header className="top-bar">
-      <span className="brand">my-way</span>
+      <span className="brand-group">
+        <span className="brand">My Way</span>
+        <span className="tagline">because every day matters</span>
+      </span>
       <button
         className="logout-button"
         onClick={() => { logout(); window.location.href = '/login' }}

@@ -23,7 +23,8 @@ export default function LoginPage() {
   return (
     <div className="auth-page">
       <form className="auth-form" onSubmit={handleSubmit}>
-        <h1>my-way</h1>
+        <h1>My Way</h1>
+        <p className="tagline-large">because every day matters</p>
         <h2>Welcome back</h2>
         {error && <div className="error">{error}</div>}
         <label>
