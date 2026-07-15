@@ -1,43 +1,68 @@
-import { BrowserRouter, Link, Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import { LogOut } from 'lucide-react'
 import './App.css'
 import { isAuthenticated, logout } from './api/client'
+import { ToastProvider } from './contexts/ToastContext'
 import ProtectedRoute from './components/ProtectedRoute'
+import BottomNav from './components/BottomNav'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import DayView from './pages/DayView'
 import TaskAdminView from './pages/TaskAdminView'
 import TimelineView from './pages/TimelineView'
 
-function NavBar() {
+function ScrollToTop() {
   const location = useLocation()
-  if (!isAuthenticated()) return null
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [location.pathname])
+  return null
+}
 
+const AUTH_ROUTES = ['/login', '/register']
+
+function TopBar() {
+  const location = useLocation()
+  if (!isAuthenticated() || AUTH_ROUTES.includes(location.pathname)) return null
   return (
-    <nav className="app-nav">
+    <header className="top-bar">
       <span className="brand">my-way</span>
-      <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Today</Link>
-      <Link to="/tasks" className={location.pathname === '/tasks' ? 'active' : ''}>Tasks</Link>
-      <Link to="/timeline" className={location.pathname === '/timeline' ? 'active' : ''}>Timeline</Link>
-      <span className="spacer" />
-      <button onClick={() => { logout(); window.location.href = '/login' }}>Log out</button>
-    </nav>
+      <button
+        className="logout-button"
+        onClick={() => { logout(); window.location.href = '/login' }}
+      >
+        <LogOut size={18} />
+        <span>Log out</span>
+      </button>
+    </header>
   )
+}
+
+function BottomNavGate() {
+  const location = useLocation()
+  if (!isAuthenticated() || AUTH_ROUTES.includes(location.pathname)) return null
+  return <BottomNav />
 }
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="app-shell">
-        <NavBar />
-        <Routes>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/" element={<ProtectedRoute><DayView /></ProtectedRoute>} />
-          <Route path="/tasks" element={<ProtectedRoute><TaskAdminView /></ProtectedRoute>} />
-          <Route path="/timeline" element={<ProtectedRoute><TimelineView /></ProtectedRoute>} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </div>
+      <ToastProvider>
+        <ScrollToTop />
+        <TopBar />
+        <div className="app-content">
+          <Routes>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/" element={<ProtectedRoute><DayView /></ProtectedRoute>} />
+            <Route path="/tasks" element={<ProtectedRoute><TaskAdminView /></ProtectedRoute>} />
+            <Route path="/timeline" element={<ProtectedRoute><TimelineView /></ProtectedRoute>} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </div>
+        <BottomNavGate />
+      </ToastProvider>
     </BrowserRouter>
   )
 }

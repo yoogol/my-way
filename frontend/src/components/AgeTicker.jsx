@@ -36,9 +36,17 @@ export default function AgeTicker({ birthDatetime }) {
 
   return (
     <div className="age-ticker">
-      <div className="age-ticker-date">{now.toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</div>
-      <div className="age-ticker-counter">
-        {years}y {months}m {days}d {String(h).padStart(2, '0')}:{String(m).padStart(2, '0')}:{String(s).padStart(2, '0')}
+      <div className="age-ticker-date">
+        {now.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}
+      </div>
+      <div className="age-ticker-label">You've been alive for</div>
+      <div className="age-ticker-stats">
+        <div className="age-stat"><span className="age-stat-value">{years}</span><span className="age-stat-unit">years</span></div>
+        <div className="age-stat"><span className="age-stat-value">{months}</span><span className="age-stat-unit">months</span></div>
+        <div className="age-stat"><span className="age-stat-value">{days}</span><span className="age-stat-unit">days</span></div>
+      </div>
+      <div className="age-ticker-clock">
+        {String(h).padStart(2, '0')}:{String(m).padStart(2, '0')}:{String(s).padStart(2, '0')}
       </div>
     </div>
   )

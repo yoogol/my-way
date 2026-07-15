@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
+import { ListChecks, BookOpen, Newspaper, Wallet } from 'lucide-react'
 import { del, get, patch, post } from '../api/client'
 import AgeTicker from '../components/AgeTicker'
+import DateNavigator from '../components/DateNavigator'
 import TaskChecklist from '../components/TaskChecklist'
 import JournalEditor from '../components/JournalEditor'
 import ContextEventsList from '../components/ContextEventsList'
@@ -67,32 +69,29 @@ export default function DayView() {
     <div className="day-view">
       <AgeTicker birthDatetime={birthDatetime} />
 
-      <label className="date-picker">
-        Date
-        <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
-      </label>
+      <DateNavigator date={date} onChange={setDate} />
 
       {loading || !day ? (
-        <p>Loading…</p>
+        <p className="loading-text">Loading…</p>
       ) : (
         <div className="day-sections">
           <section>
-            <h2>Tasks</h2>
+            <h2><ListChecks size={20} /> Habits &amp; tasks</h2>
             <TaskChecklist taskCompletions={day.task_completions} onToggle={toggleTask} />
           </section>
 
           <section>
-            <h2>Journal</h2>
+            <h2><BookOpen size={20} /> Journal</h2>
             <JournalEditor text={day.journal_text} onSave={saveJournal} />
           </section>
 
           <section>
-            <h2>Context &amp; events</h2>
+            <h2><Newspaper size={20} /> What was going on</h2>
             <ContextEventsList events={day.context_events} onAdd={addContextEvent} />
           </section>
 
           <section>
-            <h2>Finances</h2>
+            <h2><Wallet size={20} /> Money</h2>
             <FinancialEntryList
               entries={day.financial_entries}
               recurringEntries={day.recurring_entries}

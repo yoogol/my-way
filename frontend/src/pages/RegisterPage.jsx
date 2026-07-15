@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
+import { UserPlus } from 'lucide-react'
 import { register } from '../api/client'
 
 export default function RegisterPage() {
@@ -35,14 +36,14 @@ export default function RegisterPage() {
     <div className="auth-page">
       <form className="auth-form" onSubmit={handleSubmit}>
         <h1>my-way</h1>
-        <h2>Create an account</h2>
+        <h2>Create your account</h2>
         {error && <div className="error">{error}</div>}
         <label>
           Username
-          <input value={username} onChange={(e) => setUsername(e.target.value)} required />
+          <input value={username} onChange={(e) => setUsername(e.target.value)} required autoFocus />
         </label>
         <label>
-          Email
+          Email (optional)
           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
         </label>
         <label>
@@ -50,15 +51,19 @@ export default function RegisterPage() {
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required minLength={8} />
         </label>
         <label>
-          Birth date
+          Your birth date
           <input type="date" value={birthDate} onChange={(e) => setBirthDate(e.target.value)} required />
         </label>
+        <p className="field-hint">We use this to show how long you've been alive on your home screen — just a bit of fun.</p>
         <label>
           Birth time (optional)
           <input type="time" value={birthTime} onChange={(e) => setBirthTime(e.target.value)} />
         </label>
-        <button type="submit">Register</button>
-        <p>Already have an account? <Link to="/login">Log in</Link></p>
+        <button type="submit" className="button-accent full-width">
+          <UserPlus size={18} />
+          <span>Create account</span>
+        </button>
+        <p className="auth-switch">Already have an account? <Link to="/login">Log in</Link></p>
       </form>
     </div>
   )
