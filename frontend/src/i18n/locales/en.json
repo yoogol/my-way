@@ -124,6 +124,7 @@
     "financial_balance": "Running balance"
   },
   "common": {
-    "loading": "Loading…"
+    "loading": "Loading…",
+    "menu": "Menu"
   }
 }

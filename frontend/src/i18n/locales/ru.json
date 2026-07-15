@@ -130,6 +130,7 @@
     "financial_balance": "Общий баланс"
   },
   "common": {
-    "loading": "Загрузка…"
+    "loading": "Загрузка…",
+    "menu": "Меню"
   }
 }

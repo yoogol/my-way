@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { UserPlus } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { register } from '../api/client'
-import LanguageSwitcher from '../components/LanguageSwitcher'
+import SettingsMenu from '../components/SettingsMenu'
 
 export default function RegisterPage() {
   const { t } = useTranslation()
@@ -38,7 +38,7 @@ export default function RegisterPage() {
   return (
     <div className="auth-page">
       <form className="auth-form" onSubmit={handleSubmit}>
-        <LanguageSwitcher />
+        <div className="auth-menu-row"><SettingsMenu /></div>
         <h1>{t('app.title')}</h1>
         <p className="tagline-large">{t('app.tagline')}</p>
         <h2>{t('auth.createAccount')}</h2>
