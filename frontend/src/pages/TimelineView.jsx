@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { BarChart2, ListChecks, BookOpen, Newspaper, Wallet, TrendingUp } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { get } from '../api/client'
 import { INDICATORS } from '../theme'
 import DateRangePresets from '../components/DateRangePresets'
@@ -35,6 +36,7 @@ function rangeForPreset(preset) {
 }
 
 export default function TimelineView() {
+  const { t } = useTranslation()
   const [preset, setPreset] = useState('7d')
   const [start, setStart] = useState(daysAgo(6))
   const [end, setEnd] = useState(daysAgo(0))
@@ -71,8 +73,8 @@ export default function TimelineView() {
 
   return (
     <div className="timeline-view">
-      <h1><BarChart2 size={26} /> Timeline</h1>
-      <p className="page-subtitle">See how your days add up over time.</p>
+      <h1><BarChart2 size={26} /> {t('timeline.title')}</h1>
+      <p className="page-subtitle">{t('timeline.subtitle')}</p>
 
       <DateRangePresets
         preset={preset}
@@ -93,7 +95,7 @@ export default function TimelineView() {
               onClick={() => toggleIndicator(ind.key)}
             >
               <Icon size={16} />
-              {ind.label}
+              {t(`indicator.${ind.key}`)}
             </button>
           )
         })}
@@ -101,17 +103,17 @@ export default function TimelineView() {
 
       <div className="segmented-control">
         <button className={mode === 'combined' ? 'active' : ''} onClick={() => setMode('combined')}>
-          Combined
+          {t('timeline.combined')}
         </button>
         <button className={mode === 'small-multiples' ? 'active' : ''} onClick={() => setMode('small-multiples')}>
-          One at a time
+          {t('timeline.oneAtATime')}
         </button>
       </div>
 
       {loading ? (
-        <p className="loading-text">Loading…</p>
+        <p className="loading-text">{t('common.loading')}</p>
       ) : enabledKeys.length === 0 ? (
-        <EmptyState icon={BarChart2} message="Pick at least one thing above to see it on the chart." />
+        <EmptyState icon={BarChart2} message={t('timeline.pickIndicator')} />
       ) : mode === 'combined' ? (
         <IndicatorChart data={data} enabledKeys={enabledKeys} />
       ) : (

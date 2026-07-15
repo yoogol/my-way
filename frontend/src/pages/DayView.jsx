@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { ListChecks, BookOpen, Newspaper, Wallet } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { del, get, patch, post } from '../api/client'
 import AgeTicker from '../components/AgeTicker'
 import DateNavigator from '../components/DateNavigator'
@@ -13,6 +14,7 @@ function today() {
 }
 
 export default function DayView() {
+  const { t } = useTranslation()
   const [date, setDate] = useState(today())
   const [day, setDay] = useState(null)
   const [birthDatetime, setBirthDatetime] = useState(null)
@@ -72,26 +74,26 @@ export default function DayView() {
       <DateNavigator date={date} onChange={setDate} />
 
       {loading || !day ? (
-        <p className="loading-text">Loading…</p>
+        <p className="loading-text">{t('common.loading')}</p>
       ) : (
         <div className="day-sections">
           <section>
-            <h2><ListChecks size={20} /> Habits &amp; tasks</h2>
+            <h2><ListChecks size={20} /> {t('day.habitsAndTasks')}</h2>
             <TaskChecklist taskCompletions={day.task_completions} onToggle={toggleTask} />
           </section>
 
           <section>
-            <h2><BookOpen size={20} /> Journal</h2>
+            <h2><BookOpen size={20} /> {t('day.journal')}</h2>
             <JournalEditor text={day.journal_text} onSave={saveJournal} />
           </section>
 
           <section>
-            <h2><Newspaper size={20} /> What was going on</h2>
+            <h2><Newspaper size={20} /> {t('day.whatWasGoingOn')}</h2>
             <ContextEventsList events={day.context_events} onAdd={addContextEvent} />
           </section>
 
           <section>
-            <h2><Wallet size={20} /> Money</h2>
+            <h2><Wallet size={20} /> {t('day.money')}</h2>
             <FinancialEntryList
               entries={day.financial_entries}
               recurringEntries={day.recurring_entries}

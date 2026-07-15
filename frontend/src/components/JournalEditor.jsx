@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useToast } from '../contexts/ToastContext'
 
 export default function JournalEditor({ text, onSave }) {
+  const { t } = useTranslation()
   const [value, setValue] = useState(text)
   const [saved, setSaved] = useState(true)
   const showToast = useToast()
@@ -14,7 +16,7 @@ export default function JournalEditor({ text, onSave }) {
   function handleSave() {
     onSave(value)
     setSaved(true)
-    showToast('Saved')
+    showToast(t('journal.toastSaved'))
   }
 
   return (
@@ -23,10 +25,10 @@ export default function JournalEditor({ text, onSave }) {
         rows={6}
         value={value}
         onChange={(e) => { setValue(e.target.value); setSaved(false) }}
-        placeholder="How was your day? Write as much or as little as you like."
+        placeholder={t('journal.placeholder')}
       />
       <button className="button-accent" onClick={handleSave} disabled={saved}>
-        {saved ? 'Saved' : 'Save entry'}
+        {saved ? t('journal.saved') : t('journal.save')}
       </button>
     </div>
   )

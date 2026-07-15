@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import { Trash2, ListChecks, Plus } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { del, get, patch, post } from '../api/client'
 import EmptyState from '../components/EmptyState'
 import { useToast } from '../contexts/ToastContext'
 
 export default function TaskAdminView() {
+  const { t } = useTranslation()
   const [tasks, setTasks] = useState([])
   const [name, setName] = useState('')
   const [loading, setLoading] = useState(true)
@@ -12,7 +14,7 @@ export default function TaskAdminView() {
 
   async function refresh() {
     const data = await get('/task-definitions/')
-    setTasks(data.filter((t) => t.is_active))
+    setTasks(data.filter((task) => task.is_active))
     setLoading(false)
   }
 
@@ -26,7 +28,7 @@ export default function TaskAdminView() {
     await post('/task-definitions/', { name })
     setName('')
     await refresh()
-    showToast('Habit added')
+    showToast(t('task.toastAdded'))
   }
 
   async function handleRename(id, newName) {
@@ -37,32 +39,32 @@ export default function TaskAdminView() {
   async function handleDeactivate(id) {
     await del(`/task-definitions/${id}/`)
     await refresh()
-    showToast('Removed')
+    showToast(t('task.toastRemoved'))
   }
 
-  if (loading) return <p className="loading-text">Loading…</p>
+  if (loading) return <p className="loading-text">{t('common.loading')}</p>
 
   return (
     <div className="task-admin">
-      <h1><ListChecks size={26} /> Your habits &amp; tasks</h1>
-      <p className="page-subtitle">These are the things you can check off each day, like brushing your teeth or exercising.</p>
+      <h1><ListChecks size={26} /> {t('task.adminTitle')}</h1>
+      <p className="page-subtitle">{t('task.adminSubtitle')}</p>
 
       {tasks.length === 0 ? (
         <EmptyState
           icon={ListChecks}
-          message="You haven't added any habits yet."
+          message={t('task.adminEmptyHint')}
         />
       ) : (
         <ul>
-          {tasks.map((t) => (
-            <li key={t.id}>
+          {tasks.map((task) => (
+            <li key={task.id}>
               <input
-                defaultValue={t.name}
-                onBlur={(e) => e.target.value !== t.name && handleRename(t.id, e.target.value)}
+                defaultValue={task.name}
+                onBlur={(e) => e.target.value !== task.name && handleRename(task.id, e.target.value)}
               />
-              <button className="icon-button danger" onClick={() => handleDeactivate(t.id)}>
+              <button className="icon-button danger" onClick={() => handleDeactivate(task.id)}>
                 <Trash2 size={18} />
-                <span>Remove</span>
+                <span>{t('task.remove')}</span>
               </button>
             </li>
           ))}
@@ -70,10 +72,10 @@ export default function TaskAdminView() {
       )}
 
       <form onSubmit={handleAdd} className="task-add-form">
-        <input placeholder="e.g. Brush teeth" value={name} onChange={(e) => setName(e.target.value)} />
+        <input placeholder={t('task.namePlaceholder')} value={name} onChange={(e) => setName(e.target.value)} />
         <button type="submit" className="button-accent full-width">
           <Plus size={18} />
-          <span>Add habit</span>
+          <span>{t('task.addHabit')}</span>
         </button>
       </form>
     </div>

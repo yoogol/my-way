@@ -1,0 +1,135 @@
+{
+  "app": {
+    "title": "My Way",
+    "tagline": "потому что каждый день важен"
+  },
+  "nav": {
+    "today": "Сегодня",
+    "tasks": "Задачи",
+    "timeline": "Хронология"
+  },
+  "topbar": {
+    "logout": "Выйти"
+  },
+  "auth": {
+    "welcomeBack": "С возвращением",
+    "createAccount": "Создать аккаунт",
+    "username": "Имя пользователя",
+    "email": "Эл. почта (необязательно)",
+    "password": "Пароль",
+    "birthDate": "Дата рождения",
+    "birthDateHint": "Это нужно, чтобы показать на главном экране, сколько вы уже живёте на свете — просто для удовольствия.",
+    "birthTime": "Время рождения (необязательно)",
+    "birthDateRequired": "Укажите дату рождения",
+    "logIn": "Войти",
+    "createAccountButton": "Создать аккаунт",
+    "noAccount": "Ещё нет аккаунта?",
+    "createOne": "Создать",
+    "haveAccount": "Уже есть аккаунт?",
+    "logInLink": "Войти"
+  },
+  "errors": {
+    "invalidCredentials": "Неверное имя пользователя или пароль",
+    "sessionExpired": "Сессия истекла",
+    "registrationFailed": "Не удалось зарегистрироваться"
+  },
+  "day": {
+    "today": "Сегодня",
+    "yesterday": "Вчера",
+    "tomorrow": "Завтра",
+    "habitsAndTasks": "Привычки и задачи",
+    "journal": "Дневник",
+    "whatWasGoingOn": "Что происходило вокруг",
+    "money": "Деньги"
+  },
+  "ageTicker": {
+    "aliveFor": "Вы живёте на свете уже",
+    "years_one": "год",
+    "years_few": "года",
+    "years_many": "лет",
+    "years_other": "года",
+    "months_one": "месяц",
+    "months_few": "месяца",
+    "months_many": "месяцев",
+    "months_other": "месяца",
+    "days_one": "день",
+    "days_few": "дня",
+    "days_many": "дней",
+    "days_other": "дня"
+  },
+  "task": {
+    "emptyHint": "Пока нет привычек. Добавьте первую на вкладке «Задачи».",
+    "adminTitle": "Ваши привычки и задачи",
+    "adminSubtitle": "Это то, что можно отмечать каждый день, например чистку зубов или тренировку.",
+    "adminEmptyHint": "Вы ещё не добавили ни одной привычки.",
+    "namePlaceholder": "например, Почистить зубы",
+    "addHabit": "Добавить привычку",
+    "remove": "Удалить",
+    "toastAdded": "Привычка добавлена",
+    "toastRemoved": "Удалено"
+  },
+  "journal": {
+    "placeholder": "Как прошёл ваш день? Напишите столько, сколько захотите.",
+    "save": "Сохранить запись",
+    "saved": "Сохранено",
+    "toastSaved": "Сохранено"
+  },
+  "context": {
+    "emptyHint": "Пока ничего не отмечено. Добавьте новость или местное событие, которое было важным сегодня.",
+    "addEvent": "+ Добавить событие",
+    "addAnother": "Добавить ещё событие",
+    "descriptionPlaceholder": "Что произошло (мировые/местные новости и т.д.)?",
+    "opinionPlaceholder": "Ваше мнение (необязательно)",
+    "myTake": "Моё мнение:",
+    "cancel": "Отмена",
+    "add": "Добавить",
+    "toastAdded": "Добавлено"
+  },
+  "financial": {
+    "emptyHint": "Пока не отмечено ни одного дохода или расхода за этот день.",
+    "addAmount": "+ Добавить сумму",
+    "addAnother": "Добавить ещё сумму",
+    "expense": "Расход",
+    "income": "Доход",
+    "recurring": "Регулярные",
+    "recurringEntry": "Регулярная запись",
+    "remove": "Удалить",
+    "descriptionPlaceholder": "На что это? (например, Продукты)",
+    "amountPlaceholder": "Сумма",
+    "moneyOut": "Расход",
+    "moneyIn": "Доход",
+    "thisRepeats": "Повторяется",
+    "everyDay": "Каждый день",
+    "everyWeek": "Каждую неделю",
+    "everyMonth": "Каждый месяц",
+    "everyYear": "Каждый год",
+    "endsOptional": "Окончание (необязательно)",
+    "cancel": "Отмена",
+    "add": "Добавить",
+    "toastAdded": "Добавлено"
+  },
+  "timeline": {
+    "title": "Хронология",
+    "subtitle": "Посмотрите, как складываются ваши дни.",
+    "last7Days": "Последние 7 дней",
+    "last30Days": "Последние 30 дней",
+    "thisMonth": "Этот месяц",
+    "custom": "Свой диапазон",
+    "from": "С",
+    "to": "По",
+    "combined": "Вместе",
+    "oneAtATime": "По одному",
+    "pickIndicator": "Выберите хотя бы один показатель выше, чтобы увидеть график.",
+    "combinedIndexed": "Вместе (в шкале 0–100)"
+  },
+  "indicator": {
+    "task_completion_rate": "Выполнение задач",
+    "journal_length": "Длина записи в дневнике",
+    "context_event_count": "События",
+    "financial_net": "Баланс за день",
+    "financial_balance": "Общий баланс"
+  },
+  "common": {
+    "loading": "Загрузка…"
+  }
+}

@@ -47,7 +47,7 @@ async function apiFetch(path, opts = {}, retried = false) {
     if (refreshed) return apiFetch(path, opts, true)
     clearTokens()
     window.location.href = '/login'
-    throw new Error('Session expired')
+    throw new Error('errors.sessionExpired')
   }
 
   if (!res.ok) {
@@ -70,7 +70,7 @@ export async function login(username, password) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ username, password }),
   })
-  if (!res.ok) throw new Error('Invalid username or password')
+  if (!res.ok) throw new Error('errors.invalidCredentials')
   const data = await res.json()
   setTokens(data)
   return data
@@ -84,7 +84,7 @@ export async function register(payload) {
   })
   if (!res.ok) {
     const text = await res.text()
-    throw new Error(text || 'Registration failed')
+    throw new Error(text || 'errors.registrationFailed')
   }
   const data = await res.json()
   setTokens(data)

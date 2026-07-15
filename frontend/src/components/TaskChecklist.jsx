@@ -1,26 +1,28 @@
 import { Check, ListChecks } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import EmptyState from './EmptyState'
 
 export default function TaskChecklist({ taskCompletions, onToggle }) {
+  const { t } = useTranslation()
   if (!taskCompletions.length) {
     return (
       <EmptyState
         icon={ListChecks}
-        message="No habits added yet. Add your first one in the Tasks tab."
+        message={t('task.emptyHint')}
       />
     )
   }
   return (
     <ul className="task-checklist">
-      {taskCompletions.map((t) => (
-        <li key={t.task_definition_id}>
+      {taskCompletions.map((task) => (
+        <li key={task.task_definition_id}>
           <button
             type="button"
-            className={`task-row${t.completed ? ' done' : ''}`}
-            onClick={() => onToggle(t.task_definition_id, !t.completed)}
+            className={`task-row${task.completed ? ' done' : ''}`}
+            onClick={() => onToggle(task.task_definition_id, !task.completed)}
           >
-            <span className="task-check">{t.completed && <Check size={18} strokeWidth={3} />}</span>
-            <span className="task-name">{t.name}</span>
+            <span className="task-check">{task.completed && <Check size={18} strokeWidth={3} />}</span>
+            <span className="task-name">{task.name}</span>
           </button>
         </li>
       ))}

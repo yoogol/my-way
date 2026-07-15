@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Plus, Wallet, ArrowUpRight, ArrowDownRight, Repeat, Trash2 } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import EmptyState from './EmptyState'
 import { useToast } from '../contexts/ToastContext'
 
@@ -14,6 +15,7 @@ function AmountPill({ amount }) {
 }
 
 export default function FinancialEntryList({ entries, recurringEntries, date, onAdd, onDeleteRecurring }) {
+  const { t } = useTranslation()
   const [showForm, setShowForm] = useState(false)
   const [description, setDescription] = useState('')
   const [amount, setAmount] = useState('')
@@ -45,7 +47,7 @@ export default function FinancialEntryList({ entries, recurringEntries, date, on
       end_date: isRecurring && endDate ? endDate : null,
     })
     resetForm()
-    showToast('Added')
+    showToast(t('financial.toastAdded'))
   }
 
   const hasAny = entries.length > 0 || recurringEntries.length > 0
@@ -55,8 +57,8 @@ export default function FinancialEntryList({ entries, recurringEntries, date, on
       {!hasAny && !showForm ? (
         <EmptyState
           icon={Wallet}
-          message="No money in or out logged for this day yet."
-          actionLabel="+ Add an amount"
+          message={t('financial.emptyHint')}
+          actionLabel={t('financial.addAmount')}
           onAction={() => setShowForm(true)}
         />
       ) : (
@@ -65,7 +67,7 @@ export default function FinancialEntryList({ entries, recurringEntries, date, on
             <ul>
               {entries.map((e) => (
                 <li key={e.id}>
-                  <span>{e.description || (e.amount < 0 ? 'Expense' : 'Income')}</span>
+                  <span>{e.description || (e.amount < 0 ? t('financial.expense') : t('financial.income'))}</span>
                   <AmountPill amount={parseFloat(e.amount)} />
                 </li>
               ))}
@@ -74,16 +76,16 @@ export default function FinancialEntryList({ entries, recurringEntries, date, on
 
           {recurringEntries.length > 0 && (
             <div className="recurring-entries">
-              <h4><Repeat size={14} /> Recurring</h4>
+              <h4><Repeat size={14} /> {t('financial.recurring')}</h4>
               <ul>
                 {recurringEntries.map((e) => (
                   <li key={e.id}>
-                    <span>{e.description || 'Recurring entry'} <span className="recurring-frequency">({e.frequency})</span></span>
+                    <span>{e.description || t('financial.recurringEntry')} <span className="recurring-frequency">({e.frequency})</span></span>
                     <span className="recurring-actions">
                       <AmountPill amount={parseFloat(e.amount)} />
                       <button type="button" className="icon-button" onClick={() => onDeleteRecurring(e.id)}>
                         <Trash2 size={16} />
-                        <span>Remove</span>
+                        <span>{t('financial.remove')}</span>
                       </button>
                     </span>
                   </li>
@@ -95,7 +97,7 @@ export default function FinancialEntryList({ entries, recurringEntries, date, on
           {!showForm && (
             <button className="add-more-button" onClick={() => setShowForm(true)}>
               <Plus size={18} />
-              <span>Add another amount</span>
+              <span>{t('financial.addAnother')}</span>
             </button>
           )}
         </>
@@ -104,7 +106,7 @@ export default function FinancialEntryList({ entries, recurringEntries, date, on
       {showForm && (
         <form onSubmit={handleSubmit} className="financial-entry-form">
           <input
-            placeholder="What's it for? (e.g. Groceries)"
+            placeholder={t('financial.descriptionPlaceholder')}
             value={description}
             onChange={(ev) => setDescription(ev.target.value)}
             autoFocus
@@ -113,35 +115,35 @@ export default function FinancialEntryList({ entries, recurringEntries, date, on
             type="number"
             step="0.01"
             min="0"
-            placeholder="Amount"
+            placeholder={t('financial.amountPlaceholder')}
             value={amount}
             onChange={(ev) => setAmount(ev.target.value)}
           />
           <div className="segmented-control">
-            <button type="button" className={!isIncome ? 'active' : ''} onClick={() => setIsIncome(false)}>Money out</button>
-            <button type="button" className={isIncome ? 'active' : ''} onClick={() => setIsIncome(true)}>Money in</button>
+            <button type="button" className={!isIncome ? 'active' : ''} onClick={() => setIsIncome(false)}>{t('financial.moneyOut')}</button>
+            <button type="button" className={isIncome ? 'active' : ''} onClick={() => setIsIncome(true)}>{t('financial.moneyIn')}</button>
           </div>
           <label className="inline">
             <input type="checkbox" checked={isRecurring} onChange={(ev) => setIsRecurring(ev.target.checked)} />
-            This repeats
+            {t('financial.thisRepeats')}
           </label>
           {isRecurring && (
             <>
               <select value={frequency} onChange={(ev) => setFrequency(ev.target.value)}>
-                <option value="daily">Every day</option>
-                <option value="weekly">Every week</option>
-                <option value="monthly">Every month</option>
-                <option value="yearly">Every year</option>
+                <option value="daily">{t('financial.everyDay')}</option>
+                <option value="weekly">{t('financial.everyWeek')}</option>
+                <option value="monthly">{t('financial.everyMonth')}</option>
+                <option value="yearly">{t('financial.everyYear')}</option>
               </select>
               <label>
-                Ends (optional)
+                {t('financial.endsOptional')}
                 <input type="date" value={endDate} onChange={(ev) => setEndDate(ev.target.value)} />
               </label>
             </>
           )}
           <div className="form-actions">
-            <button type="button" onClick={resetForm}>Cancel</button>
-            <button type="submit" className="button-accent">Add</button>
+            <button type="button" onClick={resetForm}>{t('financial.cancel')}</button>
+            <button type="submit" className="button-accent">{t('financial.add')}</button>
           </div>
         </form>
       )}

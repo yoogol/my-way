@@ -1,0 +1,129 @@
+{
+  "app": {
+    "title": "My Way",
+    "tagline": "because every day matters"
+  },
+  "nav": {
+    "today": "Today",
+    "tasks": "Tasks",
+    "timeline": "Timeline"
+  },
+  "topbar": {
+    "logout": "Log out"
+  },
+  "auth": {
+    "welcomeBack": "Welcome back",
+    "createAccount": "Create your account",
+    "username": "Username",
+    "email": "Email (optional)",
+    "password": "Password",
+    "birthDate": "Your birth date",
+    "birthDateHint": "We use this to show how long you've been alive on your home screen — just a bit of fun.",
+    "birthTime": "Birth time (optional)",
+    "birthDateRequired": "Birth date is required",
+    "logIn": "Log in",
+    "createAccountButton": "Create account",
+    "noAccount": "No account yet?",
+    "createOne": "Create one",
+    "haveAccount": "Already have an account?",
+    "logInLink": "Log in"
+  },
+  "errors": {
+    "invalidCredentials": "Invalid username or password",
+    "sessionExpired": "Session expired",
+    "registrationFailed": "Registration failed"
+  },
+  "day": {
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "tomorrow": "Tomorrow",
+    "habitsAndTasks": "Habits & tasks",
+    "journal": "Journal",
+    "whatWasGoingOn": "What was going on",
+    "money": "Money"
+  },
+  "ageTicker": {
+    "aliveFor": "You've been alive for",
+    "years_one": "year",
+    "years_other": "years",
+    "months_one": "month",
+    "months_other": "months",
+    "days_one": "day",
+    "days_other": "days"
+  },
+  "task": {
+    "emptyHint": "No habits added yet. Add your first one in the Tasks tab.",
+    "adminTitle": "Your habits & tasks",
+    "adminSubtitle": "These are the things you can check off each day, like brushing your teeth or exercising.",
+    "adminEmptyHint": "You haven't added any habits yet.",
+    "namePlaceholder": "e.g. Brush teeth",
+    "addHabit": "Add habit",
+    "remove": "Remove",
+    "toastAdded": "Habit added",
+    "toastRemoved": "Removed"
+  },
+  "journal": {
+    "placeholder": "How was your day? Write as much or as little as you like.",
+    "save": "Save entry",
+    "saved": "Saved",
+    "toastSaved": "Saved"
+  },
+  "context": {
+    "emptyHint": "Nothing noted yet. Add a news story or local event that mattered today.",
+    "addEvent": "+ Add an event",
+    "addAnother": "Add another event",
+    "descriptionPlaceholder": "What happened (world/local news, etc.)?",
+    "opinionPlaceholder": "Your opinion (optional)",
+    "myTake": "My take:",
+    "cancel": "Cancel",
+    "add": "Add",
+    "toastAdded": "Added"
+  },
+  "financial": {
+    "emptyHint": "No money in or out logged for this day yet.",
+    "addAmount": "+ Add an amount",
+    "addAnother": "Add another amount",
+    "expense": "Expense",
+    "income": "Income",
+    "recurring": "Recurring",
+    "recurringEntry": "Recurring entry",
+    "remove": "Remove",
+    "descriptionPlaceholder": "What's it for? (e.g. Groceries)",
+    "amountPlaceholder": "Amount",
+    "moneyOut": "Money out",
+    "moneyIn": "Money in",
+    "thisRepeats": "This repeats",
+    "everyDay": "Every day",
+    "everyWeek": "Every week",
+    "everyMonth": "Every month",
+    "everyYear": "Every year",
+    "endsOptional": "Ends (optional)",
+    "cancel": "Cancel",
+    "add": "Add",
+    "toastAdded": "Added"
+  },
+  "timeline": {
+    "title": "Timeline",
+    "subtitle": "See how your days add up over time.",
+    "last7Days": "Last 7 days",
+    "last30Days": "Last 30 days",
+    "thisMonth": "This month",
+    "custom": "Custom",
+    "from": "From",
+    "to": "To",
+    "combined": "Combined",
+    "oneAtATime": "One at a time",
+    "pickIndicator": "Pick at least one thing above to see it on the chart.",
+    "combinedIndexed": "Combined (indexed 0–100)"
+  },
+  "indicator": {
+    "task_completion_rate": "Task completion rate",
+    "journal_length": "Journal length",
+    "context_event_count": "Context events",
+    "financial_net": "Financial net",
+    "financial_balance": "Running balance"
+  },
+  "common": {
+    "loading": "Loading…"
+  }
+}

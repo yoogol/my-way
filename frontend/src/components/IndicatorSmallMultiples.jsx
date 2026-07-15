@@ -1,7 +1,9 @@
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
+import { useTranslation } from 'react-i18next'
 import { INDICATORS, seriesColor, usePrefersDark } from '../theme'
 
 export default function IndicatorSmallMultiples({ data, enabledKeys }) {
+  const { t } = useTranslation()
   const isDark = usePrefersDark()
   const indicators = INDICATORS.filter((i) => enabledKeys.includes(i.key))
 
@@ -9,7 +11,7 @@ export default function IndicatorSmallMultiples({ data, enabledKeys }) {
     <div className="small-multiples-grid">
       {indicators.map((ind) => (
         <div className="chart-card" key={ind.key}>
-          <h3>{ind.label}</h3>
+          <h3>{t(`indicator.${ind.key}`)}</h3>
           <ResponsiveContainer width="100%" height={220}>
             <LineChart data={data} margin={{ top: 8, right: 16, left: 0, bottom: 8 }}>
               <CartesianGrid strokeDasharray="0" stroke="var(--gridline)" vertical={false} />
@@ -19,7 +21,7 @@ export default function IndicatorSmallMultiples({ data, enabledKeys }) {
               <Line
                 type="monotone"
                 dataKey={ind.key}
-                name={ind.label}
+                name={t(`indicator.${ind.key}`)}
                 stroke={seriesColor(ind, isDark)}
                 strokeWidth={2}
                 dot={{ r: 4 }}

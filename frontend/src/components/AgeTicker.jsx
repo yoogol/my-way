@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 function diff(birth, now) {
   let years = now.getFullYear() - birth.getFullYear()
@@ -22,6 +23,7 @@ function diff(birth, now) {
 }
 
 export default function AgeTicker({ birthDatetime }) {
+  const { t, i18n } = useTranslation()
   const [now, setNow] = useState(new Date())
 
   useEffect(() => {
@@ -37,13 +39,13 @@ export default function AgeTicker({ birthDatetime }) {
   return (
     <div className="age-ticker">
       <div className="age-ticker-date">
-        {now.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}
+        {now.toLocaleDateString(i18n.language, { weekday: 'long', month: 'long', day: 'numeric' })}
       </div>
-      <div className="age-ticker-label">You've been alive for</div>
+      <div className="age-ticker-label">{t('ageTicker.aliveFor')}</div>
       <div className="age-ticker-stats">
-        <div className="age-stat"><span className="age-stat-value">{years}</span><span className="age-stat-unit">years</span></div>
-        <div className="age-stat"><span className="age-stat-value">{months}</span><span className="age-stat-unit">months</span></div>
-        <div className="age-stat"><span className="age-stat-value">{days}</span><span className="age-stat-unit">days</span></div>
+        <div className="age-stat"><span className="age-stat-value">{years}</span><span className="age-stat-unit">{t('ageTicker.years', { count: years })}</span></div>
+        <div className="age-stat"><span className="age-stat-value">{months}</span><span className="age-stat-unit">{t('ageTicker.months', { count: months })}</span></div>
+        <div className="age-stat"><span className="age-stat-value">{days}</span><span className="age-stat-unit">{t('ageTicker.days', { count: days })}</span></div>
       </div>
       <div className="age-ticker-clock">
         {String(h).padStart(2, '0')}:{String(m).padStart(2, '0')}:{String(s).padStart(2, '0')}

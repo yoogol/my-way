@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import { ChevronLeft, ChevronRight, Calendar } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 
 function addDays(dateStr, delta) {
   const d = new Date(dateStr + 'T00:00:00')
@@ -7,19 +8,20 @@ function addDays(dateStr, delta) {
   return d.toISOString().slice(0, 10)
 }
 
-function formatLabel(dateStr) {
-  const todayStr = new Date().toISOString().slice(0, 10)
-  const yesterdayStr = addDays(todayStr, -1)
-  const tomorrowStr = addDays(todayStr, 1)
-  if (dateStr === todayStr) return 'Today'
-  if (dateStr === yesterdayStr) return 'Yesterday'
-  if (dateStr === tomorrowStr) return 'Tomorrow'
-  const d = new Date(dateStr + 'T00:00:00')
-  return d.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })
-}
-
 export default function DateNavigator({ date, onChange }) {
+  const { t, i18n } = useTranslation()
   const inputRef = useRef(null)
+
+  function formatLabel(dateStr) {
+    const todayStr = new Date().toISOString().slice(0, 10)
+    const yesterdayStr = addDays(todayStr, -1)
+    const tomorrowStr = addDays(todayStr, 1)
+    if (dateStr === todayStr) return t('day.today')
+    if (dateStr === yesterdayStr) return t('day.yesterday')
+    if (dateStr === tomorrowStr) return t('day.tomorrow')
+    const d = new Date(dateStr + 'T00:00:00')
+    return d.toLocaleDateString(i18n.language, { weekday: 'long', month: 'long', day: 'numeric' })
+  }
 
   function openPicker() {
     const el = inputRef.current

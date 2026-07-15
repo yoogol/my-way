@@ -1,4 +1,5 @@
 import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
+import { useTranslation } from 'react-i18next'
 import { INDICATORS, seriesColor, usePrefersDark } from '../theme'
 
 // Combined view compares trend shape across indicators of different native units
@@ -23,13 +24,14 @@ function indexSeries(data, keys) {
 }
 
 export default function IndicatorChart({ data, enabledKeys }) {
+  const { t } = useTranslation()
   const isDark = usePrefersDark()
   const indicators = INDICATORS.filter((i) => enabledKeys.includes(i.key))
   const indexed = indexSeries(data, enabledKeys)
 
   return (
     <div className="chart-card">
-      <h3>Combined (indexed 0–100)</h3>
+      <h3>{t('timeline.combinedIndexed')}</h3>
       <ResponsiveContainer width="100%" height={340}>
         <LineChart data={indexed} margin={{ top: 8, right: 16, left: 0, bottom: 8 }}>
           <CartesianGrid strokeDasharray="0" stroke="var(--gridline)" vertical={false} />
@@ -42,7 +44,7 @@ export default function IndicatorChart({ data, enabledKeys }) {
               key={ind.key}
               type="monotone"
               dataKey={ind.key}
-              name={ind.label}
+              name={t(`indicator.${ind.key}`)}
               stroke={seriesColor(ind, isDark)}
               strokeWidth={2}
               dot={{ r: 4 }}
